@@ -1,0 +1,61 @@
+{% extends "budelete.html" %}
+        {% block css %}
+        #table{
+            width: 980px;
+            margin: 50px auto;
+        }
+        #t1{
+            border: 1px solid;
+            width: 980px;
+            height: 100px;
+        }
+        #t1 td{
+            width: 140px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border: 1px solid;
+            {#margin-bottom: 10px;#}
+        }
+        #tr1{
+            font-weight: bold;
+            font-family: "微软雅黑";
+            font-size: 20px;
+        }
+
+        .delete{
+            border: 1px solid red;
+            background-color: red;
+            color: white;
+            width: 140px;
+            height: 50px;
+            font-weight: bold;
+        }
+        {% endblock %}
+{% block main %}
+    <div id="table">
+        <table id="t1">
+                <tr id="tr1">
+                    <td>楼栋号</td>
+                    <td>楼栋开工日期</td>
+                    <td>楼栋完工日期</td>
+                    <td>楼栋层数</td>
+                    <td>施工方</td>
+                    <td>监理方</td>
+{#                  <td>操作</td>#}
+                </tr>
+                {% for bu in data %}
+                    <tr>
+                        <td>{{ bu.building_name }}</td>
+                        <td>{{ bu.building_sdate }}</td>
+                        <td>{{ bu.building_edate }}</td>
+                        <td>{{ bu.building_floor }}</td>
+                        <td>{{ bu.building_bcp }}</td>
+                        <td>{{ bu.building_svcp }}</td>
+    {#                  <td><button class="delete" type="submit" value="delete">删除</button></td>#}
+                    </tr>
+                {% endfor %}
+
+        </table>
+    </div>
+{% endblock %}

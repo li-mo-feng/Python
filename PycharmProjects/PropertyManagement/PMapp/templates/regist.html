@@ -1,0 +1,212 @@
+{% extends "login.html" %}
+{% load static %}
+<div>
+{% block script %}
+<script>
+    $(document).ready(function () {
+        {#===================id需要修改处理方式#}
+        {#未完待续额#}
+        {#==============================正则判断用户名仅限中文或者英文=====#}
+        $("#in2").blur(function () {
+            {#alert("uname="+uname);#}
+            var uname=$("#in2").val();
+            var reg= /^[\u4E00-\u9FA5A-Za-z]+$/;
+
+            {#仅限中文或者英语#}
+            if (uname.length == 0){
+                $("#bu1").attr("disabled","True")
+            }else {
+                $("#bu1").removeAttr("disabled")
+            }
+            if (uname.match(reg) != null)
+            {
+                $("#p2").hide()
+            }
+            else {
+                $("#p2").show()
+            }
+        });
+        {#===================================判断密码=========#}
+        $("#in3").blur(function () {
+            var upassword=$("#in3").val();
+            var reg= /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/;
+
+            if (upassword.length == 0){
+                $("#bu1").attr("disabled","True")
+            }else {
+                $("#bu1").removeAttr("disabled")
+            }
+            {#.........................................................#}
+            if (upassword.match(reg) != null)
+            {
+                $("#p3").hide()
+            }
+            else {
+                $("#p3").show()
+            }
+        });
+        {#=========================================手机号码================#}
+        $("#in4").blur(function () {
+            var uphonenum=$("#in4").val();
+            var reg= /^[1][3,4,5,7,8,9][0-9]{9}$/;
+
+            if (uphonenum.length == 0){
+                $("#bu1").attr("disabled","True")
+            }else {
+                $("#bu1").removeAttr("disabled")
+            }
+            {#------------------------------------#}
+            {#手机号码#}
+            if (uphonenum.match(reg) != null)
+            {
+                $("#p4").hide()
+            }
+            else {
+                $("#p4").show()
+            }
+            $.ajax({
+                url:'/regist_check.html',
+                type:'POST',
+                data:{'uphonenum':uphonenum},
+                dataType:'json',
+                }).done(function (data) {
+                    if (data.res==2){
+                        alert("此手机号码已经被注册！请核对是否输入错误！或者及时拨打110报警！")
+                    }
+            })
+        });
+        {#==========================================身份证号码=====================#}
+        $("#in5").blur(function () {
+            var ucardnum=$("#in5").val();
+            var reg= /^\d{15}|\d{18}$/;
+
+            if (ucardnum.length == 0){
+                $("#bu1").attr("disabled","True")
+            }
+            else {
+                $("#bu1").removeAttr("disabled")
+            }
+            {#----------------------------------#}
+            {#15到18位身份证#}
+            if (ucardnum.match(reg) != null)
+            {
+                $("#p5").hide()
+            }
+            else {
+                $("#p5").show()
+            }
+            $.ajax({
+                url:'/regist_check.html',
+                type:'POST',
+                data:{'ucardnum':ucardnum},
+                dataType:'json',
+                }).done(function (data) {
+                    if (data.res==1){
+                        alert("此身份证已经被注册！请核对是否输入错误！或者及时拨打110报警！及时拨打110报警！及时拨打110报警！")
+                }
+            })
+        });
+        {#=========================================房间号码==============#}
+        $("#in6").blur(function () {
+            var roomid=$("#in6").val();
+            var reg= /^\d{4}$/;
+            if (roomid.length == 0){
+                $("#bu1").attr("disabled","True")
+            }wW
+            else {
+                $("#bu1").removeAttr("disabled")
+            }
+            if (roomid.match(reg) !=0 )
+        })
+
+    });
+</script>
+
+{% endblock %}
+</div>
+{#==========样式#}
+<div>
+{% block css %}
+    .main .right{
+            background-color: white;
+            opacity: 0.3;
+            border: 1px solid black;
+            width:800px;
+            height: 750px;
+            position: absolute;
+            left: 450px;
+            top: 50px;
+        }
+    .main .right_copy{
+            border: 1px solid black;
+            width:800px;
+            height: 750px;
+            position: absolute;
+            left: 450px;
+            top: 50px;
+        }
+    .main .right_copy #pp{
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+            font-size: 25px;
+            font-family: "微软雅黑 Light";
+            font-style: italic;
+        }
+    .main .right_copy input{
+            border:1px solid;
+    }
+    .main .right_copy input,#type,#sex,#bu1{
+            width:500px;
+            height: 40px;
+            margin: 13px 170px;
+    }
+        .main .right_copy #bu1{
+            border:1px solid red;
+            background-color:red;
+            color:white;
+    }
+    #ff div {
+        height:8px
+        font-weight: 900
+        display:none
+    }
+    #ff p{
+        line-height:100%
+        color:red;
+        font-size:8px;
+        text-align:center;
+        display:none;
+    }
+{% endblock %}
+</div>
+{% block pp %}
+    <p>欢迎注册！</p>
+{% endblock %}
+{% block regist %}
+    <form  id="ff" action="uregist" method="post">
+{#        <input id="in1" type="text" name="usid" placeholder="请自定义您的ID">#}
+{#        <div>#}
+{#           <p id="p1">仅限四位数字</p>#}
+{#        </div>#}
+        <input id="in2" type="text" name="uname" placeholder="请输入姓名">
+            <p class="pa" id="p2">仅限中文或者英文</p>
+        <input id="in3" type="password" name="upassword" placeholder="请输入密码">
+            <p class="pa" id="p3">由6-21字母和数字组成</p>
+        <input id="in4" type="text" name="uphonenum" placeholder="请输入手机号码">
+            <p class="pa" id="p4">手机号码套路不对，请仔细检查</p>
+        <input id="in5" type="text" name="ucardnum" placeholder="请输入身份证号码">
+            <p class="pa" id="p5">身份证套路不正确，请仔细检查</p>
+
+        <input id="in6" type="text" name="uroomid" placeholder="请输入您的房间号码（四位数）">
+            <p class="pa" id="p6">一共就四位数！MDZZ</p>
+        <select name="sex" id="sex" >
+            <option value="男">男</option>
+            <option value="女">女</option>
+        </select>
+        <select name="type" id="type" >
+            <option value="yezhu">尊贵的业主</option>
+        </select>
+        <button id="bu1">注册</button>
+    </form>
+{% endblock %}

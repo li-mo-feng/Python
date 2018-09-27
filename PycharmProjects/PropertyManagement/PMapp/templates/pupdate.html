@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .main{
+            width: 900px;
+            margin: 70px auto;
+        }
+        .main #left{
+            {#border: 1px solid red;#}
+            width: 400px;
+            float: left;
+            margin-left: 20px;
+        }
+        .main #left ul{
+            list-style: none;
+            width: 400px;
+        }
+        .main #left ul li{
+            margin-top: 10px;
+            text-align: center;
+            line-height: 50px;
+            border: 1px solid;
+            width: 358px;
+            height: 48px;
+        }
+        .main #right{
+            {#border: 1px solid red;#}
+            width: 400px;
+            float: right;
+            margin-right: 50px;
+        }
+        .main #right ul {
+            list-style:none;
+            width: 400px;
+            margin-right: 50px;
+        }
+        .main #right ul input{
+            margin-top: 10px;
+            width: 356px;
+            height: 46px;
+        }
+        .main #right ul select{
+            margin-top: 10px;
+            width: 360px;
+            height: 50px ;
+        }
+        .main #right button{
+            margin-top: 10px;
+            width: 360px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div id="left">
+        <ul>
+            <li>用户ID</li>
+            <li>用户密码</li>
+            <li>用户姓名</li>
+            <li>用户性别</li>
+            <li>用户籍贯</li>
+            <li>用户联系方式</li>
+            <li>用户的房间号</li>
+            <li>用户证件</li>
+            <li>用户的身份</li>
+        </ul>
+    </div>
+    <div id="right">
+    {% block action %}
+        <form action="" method="post" name="newro">
+    {% endblock %}
+            <ul>
+            {% block main %}
+                <li><select name="id" id="">
+                    {% for i in udata %}
+                    <option value="{{ i.user_id }}">{{ i.user_id }}</option>
+                    {# 获取y#}
+                    {% endfor %}
+                    </select></li>
+            {% endblock %}
+                <li><input type="password"></li>
+                <li><input type="text" id="name"></li>
+                <li><select name="sex" id="">
+
+                    {# 获取用户性别#}
+                    </select></li>
+                <li><input type="text"></li>
+                    {# 籍贯#}
+                <li><input type="text"></li>
+                    {# 联系方式#}
+                <li><select name="roomid" id="">
+                    <option value="null">无</option>
+                    {% for i in rdata %}
+                        <option value="{{ i.room_id }}">房间号：{{ i.room_id }}</option>
+                    {% endfor %}
+                </select>
+                </li>
+                <li><input type="text" name="cardnum"></li>
+                    {# 身份证号码#}
+                <li><select name="type" id="">
+                    {% block option %}
+                        <option value="sadmin">狗管理</option>
+                        <option value="worker">职员</option>
+                        <option value="yezhu">业主</option>
+                    {% endblock %}
+                    </select>
+                </li>
+                <li><button>提交</button></li>
+            </ul>
+        </form>
+    </div>
+</div>
+</body>
+</html>

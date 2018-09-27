@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    {% block css1 %}
+        #table{
+            width: 1300px;
+            margin: 50px auto;
+        }
+    {% endblock %}
+
+        #t1{
+            border: 1px solid;
+            width: 1300px;
+            height: 60px;
+        }
+        #t1 td{
+        {% block css2 %}
+            width: 130px;
+        {% endblock %}
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border: 1px solid;
+            {#margin-bottom: 10px;#}
+        }
+        #tr1{
+            font-weight: bold;
+            font-family: "微软雅黑";
+            font-size: 15px;
+        }
+            #tr2{
+            font-family: "微软雅黑";
+            font-size: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="table">
+        <form action="" method="post" id="">
+            <table id="t1">
+                    <tr id="tr1">
+                        <td>用户ID</td>
+                        <td>用户密码</td>
+                        <td>用户姓名</td>
+                        <td>用户性别</td>
+                        <td>用户籍贯</td>
+                        <td>用户联系方式</td>
+                        <td>用户的房间号</td>
+                        <td>用户证件</td>
+                        <td>用户的身份</td>
+                        {% block td1 %}
+
+                        {% endblock %}
+                    </tr>
+                    {% for bu in udata %}
+                        <tr id="tr2">
+                            <td>{{ bu.user_id }}</td>
+                            <td>{{ bu.user_password}}</td>
+                            <td>{{ bu.user_name }}</td>
+                            <td>{{ bu.user_sex }}</td>
+                            <td>{{ bu.user_city }}</td>
+                            <td>{{ bu.user_phonenum }}</td>
+                            <td>{{ bu.user_roomid }}</td>
+                            <td>{{ bu.user_cardnum }}</td>
+                            <td>{{ bu.user_type }}</td>
+                            {% block td2 %}
+                            {% endblock %}
+                    </tr>
+                    {% endfor %}
+            </table>
+        </form>
+    </div>
+</body>
+</html>

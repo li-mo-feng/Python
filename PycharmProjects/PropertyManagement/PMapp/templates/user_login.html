@@ -1,0 +1,73 @@
+
+
+
+{#=======================该页面为登陆跳转页面=====================#}
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    {% block tiaozhuan %}
+            {#-------------------------多少秒跳转-------------------------------#}
+        {% if  inuserinfor == 1 %}
+            <meta http-equiv="refresh" content="3;url=sadmin.html">
+        {% elif inuserinfor == 2 %}
+            <meta http-equiv="refresh" content="3;url=yezhu.html">
+        {% elif inuserinfor == 3 %}
+            <meta http-equiv="refresh" content="3;url=zhigong.html">
+        {% elif inuserinfor == 0 %}
+            <meta http-equiv="refresh" content="3;url=index/login.html">
+        {% endif %}
+            {#-------------------------经过多少秒之后跳转------------------------#}
+
+    {% endblock %}
+
+
+    <title>Title</title>
+    {% if inuserinfor != 0 %}
+        <style>
+        body{
+            background: url("{% static 'image/building_2.jpg' %}");
+            background-size: 100%;
+        }
+        .main{
+            width: 1000px;
+            height: 500px;
+            margin: 100px auto;
+        }
+        .main h1{
+            text-align: center;
+            color: green;
+            font-family: "微软雅黑 Light";
+            font-style: italic;
+            font-size: 50px;
+        }
+        .main p{
+            text-align: center;
+            font-size: 30px;
+            font-style: italic;
+            color: black;
+            font-family: "微软雅黑 Light";
+        }
+    </style>
+    {% elif inuserinfor == 0 %}
+        <style>
+            body{
+                background: url("{% static 'image/warning.jpg' %}");
+                background-size: 100%;
+            }
+        </style>
+    {% endif %}
+</head>
+<body>
+    <div class="main">
+        {% if inuserinfor != 0 %}
+            <h1>恭喜登陆成功</h1>
+            <p>欢迎使用本系统，即将跳转！</p>
+        {% elif inuserinfor == 0 %}
+        {% endif %}
+
+    </div>
+</body>
+</html>

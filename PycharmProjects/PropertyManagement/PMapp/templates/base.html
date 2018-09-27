@@ -1,0 +1,24 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <frameset rows="15%,75%,10%" frameborder="1">
+    {#    分成三部分，和所占用空间#}
+        <frameset>
+            <frame src="top.html" scrolling="no">
+        </frameset>
+    {#    第一个模块#}
+        <frameset cols="15%,85%">
+    {#        第二个模块分割#}
+            <frame src="left.html" noresize="noresize">
+            <frame src="right.html" name="right">
+        </frameset>
+        <frameset>
+    {#        第三个模块#}
+            <frame src="footer.html">
+        </frameset>
+    </frameset>
+</html>

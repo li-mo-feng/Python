@@ -1,0 +1,117 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="{% static 'jsq/jquery-3.2.1.js' %}"></script>
+    {% block script %}
+        <script></script>
+    {% endblock %}
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            {#background-image: url({% static 'image/buildeing_1.jpg' %});#}
+            background: url("{% static 'image/building_1.jpg' %}");
+            background-size: 100%;
+            {#opacity: 50%;#}
+        }
+
+        .topbanner{
+            width:1920px;
+            height: 40px;
+            {#background-color: silver;#}
+            margin: 10px auto;
+        }
+        .topbanner h1{
+            color: white;
+            font-size: 40px;
+            font-style: italic;
+            font-family: "微软雅黑 Light";
+            text-align: center;
+            {#opacity: 50%;#}
+        }
+        .main {
+            width: 1920px;
+            height: 800px;
+            {#background-color: blanchedalmond;#}
+            position: relative;
+        }
+        {% block css %}
+        .main .right{
+            background-color: white;
+            opacity: 0.3;
+            border: 1px solid black;
+            width:400px;
+            height: 700px;
+            position: absolute;
+            right: 100px;
+            top: 100px;
+        }
+        .main .right_copy{
+            border: 1px solid black;
+            width:400px;
+            height: 700px;
+            position: absolute;
+            right: 100px;
+            top: 100px;
+        }
+        .main .right_copy #pp{
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+            font-size: 25px;
+            font-family: "微软雅黑 Light";
+            font-style: italic;
+        }
+
+        .main .right_copy #in1,#in2,#in3,#in4,#type{
+            width:300px;
+            height: 50px;
+            margin: 20px 40px
+        }
+
+        {% endblock %}
+
+    </style>
+</head>
+<body>
+    <div class="topbanner">
+        <h1>欢迎使用万达个人系统！</h1>
+    </div>
+    <div class="main">
+        <div class="right"></div>
+        <div class="right_copy">
+
+            {% block p %}
+                <p id="pp">欢迎登陆！</p>
+            {% endblock %}
+
+            {% block regist %}
+                <form action="user_login" method="post">
+                    <input id="in1" type="text" name="userid" placeholder="请用您的ID登陆">
+                    <br>
+                    <input id="in2" type="password" name="userpassword" placeholder="请输入密码">
+                    <br>
+                    <select name="type" id="type" >
+                        <option value="yezhu">尊贵的业主</option>
+                        <option value="sadmin">一流的管理</option>
+                        <option value="zhiyuan">敬业的职员</option>
+                    </select>
+                    <input id="in3" type="submit" value="登陆">
+                </form>
+                <form action="regist.html">
+                    <button id="in4">注册</button>
+                </form>
+            {% endblock %}
+        </div>
+        <div class="adv"></div>
+    </div>
+    <div class="last">
+    </div>
+</body>
+
+</html>

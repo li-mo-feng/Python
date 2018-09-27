@@ -1,0 +1,152 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #tb1{
+            {#border: 1px solid;#}
+            width: 900px;
+            height: 500px;
+            margin: 50px auto;
+        }
+        #tb1 th{
+            font-size: 20px;
+            font-weight: bold;
+            {#border: 1px solid;#}
+            width: 450px;
+            height: 45px;
+
+        }
+        #tb1 li{
+            {#border: 1px solid;#}
+            list-style: none;
+        }
+        #tb1 #u1{
+            font-weight: bold;
+            text-align: center;
+            line-height: 45px;
+            {#border: 1px solid;#}
+            width: 430px;
+            height: 360px;
+            float: left;
+
+        }
+        #tb1 #u1 ul li{
+            border: 1px solid;
+            margin-top: 10px;
+        }
+        #tb1 #u2{
+            {#list-style: none;#}
+            {#border: 1px solid;#}
+            width: 430px;
+            height: 360px;
+            margin-right: 10px;
+            float: right;
+        }
+        #tb1 #u2 input,select{
+            border: 1px solid;
+            margin-top: 10px;
+            width: 430px;
+            height: 45px;
+        }
+        #tb1 #u2 button{
+            margin-top: 10px;
+            width: 430px;
+            height: 45px;
+        }
+    </style>
+    <script src="{% static 'jsq/jquery-3.2.1.js' %}" type="text/javascript"></script>
+    <script>
+        {#$(document).ready(function () {#}
+        {#    $("#bu1").click(function () {#}
+        {#        var gtsdate=$("#busdate").val();#}
+        {#        var gtedate=$("#buedate").val();#}
+        {#        $.ajax({#}
+        {#            url:'/bu_update/',#}
+        {#            type:'POST',#}
+        {#            dataType:'json',#}
+        {#            data:{'gtsdate':gtsdate,'gtedate':gtedate}#}
+        {#        }).done(function (data) {#}
+        {#            if (data.res==0){#}
+        {#                alert("施工时间怎么可能比完工时间早！MDZZ")#}
+        {#            }#}
+        {#            })#}
+        {#        })#}
+        {#    })#}
+    </script>
+</head>
+<body>
+<div id="tb1">
+    <table>
+    <tr>
+        <th>数据项</th>
+        <th>修改内容</th>
+    </tr>
+    </table>
+    <div id="u1">
+        <ul>
+            <li>楼栋号</li>
+            <li>楼栋开工时间</li>
+            <li>楼栋竣工时间</li>
+            <li>楼栋层数</li>
+            <li>楼栋施工方</li>
+            <li>楼栋竣工方</li>
+        </ul>
+    </div>
+    <div id="u2">
+        <form action="/bu_update/" method="post" id="bu_update">
+            <ul>
+                <li>
+                    <select name="buname" id="">
+                        {% for i in data %}
+                            <option value="{{ i.building_name }}">楼栋号：{{ i.building_name }}</option>
+                        {% endfor %}
+                    </select>
+                    {#遍历数据库获得库中的楼栋号码#}
+                </li>
+                <li>
+                    <input type="date" name="busdate" id="busdate">
+                </li>
+                    {# 楼栋施工日期#}
+                <li>
+                    <input type="date" name="buedate" id="buedate">
+                </li>
+                    {# 楼栋完工日期#}
+                <li>
+                    <input type="text" name="bufloor" id="bufloor">
+                </li>
+                    {# 楼栋楼层#}
+                <li>
+                    <select name="bubcp" id="bubcp">
+
+                    {% for i in data %}
+                        <option value="{{ i.building_bcp }}">{{ i.building_bcp }}</option>
+                    {% endfor %}
+                    </select>
+                </li>
+                    {# 楼栋施工方#}
+                <li>
+                    <select name="busvcp" id="">
+
+                        {% for i in data %}
+                            <option value="{{ i.building_svcp }}">{{ i.building_svcp }}</option>
+                        {% endfor %}
+                    </select>
+                </li>
+                    {#  楼栋监理方#}
+                <li><button id="bu1" type="submit">确认</button></li>
+            </ul>
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+{% extends "budelete.html" %}
+{% block css %}
+        #table{
+            width: 1200px;
+            margin: 50px auto;
+        }
+        #t1{
+            border: 1px solid;
+            width: 1200px;
+            height: 60px;
+        }
+        #t1 td{
+            width: 120px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border: 1px solid;
+            {#margin-bottom: 10px;#}
+        }
+        #tr1{
+            font-weight: bold;
+            font-family: "微软雅黑";
+            font-size: 20px;
+        }
+
+        .delete{
+            border: 1px solid red;
+            background-color: red;
+            color: white;
+            width: 120px;
+            height: 50px;
+            font-weight: bold;
+        }
+{% endblock %}
+
+
+{% block main %}
+    <div id="table">
+        <form action="deletetd" method="post" id="shanchu">
+            <table id="t1">
+                    <tr id="tr1">
+                        <td>房间号</td>
+                        <td>房间所属楼栋</td>
+                        <td>房间所属业主ID</td>
+                        <td>所属业主姓名</td>
+                        <td>业主入住日期</td>
+                        <td>房间面积</td>
+                        <td>房间型号</td>
+                        <td>房间用途</td>
+                        <td>房间性质</td>
+                        <td>操作</td>
+                    </tr>
+                    {% for bu in data %}
+                        <tr>
+                            <td>{{ bu.room_id }}</td>
+                            <td>{{ bu.room_buildingid }}</td>
+                            <td>{{ bu.room_ownerid }}</td>
+                            <td>{{ bu.room_ownername }}</td>
+                            <td>{{ bu.room_indatae }}</td>
+                            <td>{{ bu.room_s }}</td>
+                            <td>{{ bu.room_sort }}</td>
+                            <td>{{ bu.room_type }}</td>
+                            <td>{{ bu.room_property }}</td>
+                        <td><button class="delete" type="submit" value="delete">删除</button></td>
+                    </tr>
+                    {% endfor %}
+            </table>
+        </form>
+    </div>
+{% endblock %}

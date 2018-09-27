@@ -1,0 +1,89 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main{
+            border: 1px solid;
+            width: 900px;
+            height: 700px;
+            margin: 70px auto;
+        }
+        .main #left{
+            width: 400px;
+            height: 600px;
+            float: left;
+            margin-left: 20px;
+        }
+        .main #left ul{
+            list-style: none;
+            width: 400px;
+            height: 600px;
+        }
+        .main #left ul li{
+            text-align: center;
+            line-height: 70px;
+            margin-top: 10px;
+            border: 1px solid;
+            width: 350px;
+            height: 70px;
+        }
+        .main #right{
+            width: 400px;
+            height: 600px;
+            float: right;
+            margin-right: 50px;
+        }
+        .main #right ul{
+            list-style: none;
+            width: 400px;
+            height: 600px;
+
+        }
+        .main #right ul li{
+            margin-top: 10px;
+            {#border: 1px solid;#}
+            width: 350px;
+            line-height: 72px;
+            height: 72px;
+
+        }
+        .main #right ul li input,button{
+            border: 1px solid;
+            width: 350px;
+            height:70px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main">
+    <div id="left">
+        <ul>
+            <li>新增楼栋号</li>
+            <li>楼栋开工时间</li>
+            <li>楼栋完工时间</li>
+            <li>楼栋楼层</li>
+            <li>施工方</li>
+            <li>监理方</li>
+        </ul>
+    </div>
+    <div id="right">
+        <form action="/bu_new/" method="post" name="newbu">
+            <ul>
+                <li><input type="text" name="buname"></li>
+                <li><input type="date" name="busdate"></li>
+                <li><input type="date" name="buedate"></li>
+                <li><input type="text" name="bufloor"></li>
+                <li><input type="text" name="bubcp"></li>
+                <li><input type="text" name="busvcp"></li>
+                <li><button type="submit">提交</button></li>
+            </ul>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

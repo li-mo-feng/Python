@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .main{
+            width: 900px;
+            margin: 70px auto;
+        }
+        .main #left{
+            {#border: 1px solid red;#}
+            width: 400px;
+            float: left;
+            margin-left: 20px;
+        }
+        .main #left ul{
+            list-style: none;
+            width: 400px;
+        }
+        .main #left ul li{
+            margin-top: 10px;
+            text-align: center;
+            line-height: 50px;
+            border: 1px solid;
+            width: 358px;
+            height: 48px;
+        }
+        {% block css %}
+            .main #right{
+            {#border: 1px solid red;#}
+            width: 400px;
+            float: right;
+            margin-right: 50px;
+        }
+            .main #right ul {
+                list-style:none;
+                width: 400px;
+                margin-right: 50px;
+            }
+            .main #right ul input{
+                margin-top: 10px;
+                width: 356px;
+                height: 46px;
+            }
+            .main #right ul select{
+                margin-top: 10px;
+                width: 360px;
+                height: 50px ;
+            }
+            .main #right button{
+                margin-top: 10px;
+                width: 360px;
+                height: 50px;
+            }
+        {% endblock %}
+    </style>
+</head>
+<body>
+
+<div class="main">
+{% block main  %}
+    <div id="left">
+        <ul>
+            <li >新增房间号</li>
+            <li >房间所属楼栋</li>
+            <li >房间所属业主ID</li>
+            <li >所属业主姓名</li>
+            <li >业主入住日期</li>
+            <li >房间面积</li>
+            <li >房间型号</li>
+            <li >房间用途</li>
+            <li >房间性质</li>
+        </ul>
+    </div>
+    <div id="right">
+        <form action="" method="post" name="newro">
+            <ul>
+                <li><input type="text" name="roomid"></li>
+                <li><select name="buildingid" id="">
+                    {% for i in bdata %}
+                    <option value="{{ i.building_name }}">楼栋号:{{ i.building_name }}</option>
+                    {# 获取楼栋号码#}
+                    {% endfor %}
+                    </select>
+                </li>
+                <li>
+                    <select name="ownerid" id="">
+                    <option value="null">无</option>
+                    {% for i in udata %}
+                    <option value="{{ i.user_id }}">{{ i.user_id }}</option>
+                    {# 获取用户ID#}
+                    {% endfor %}
+                    </select>
+                </li>
+
+                <li><select name="ownername" id="">
+                    <option value="null">无</option>
+                    {% for i in udata %}
+                    <option value="{{ i.user_name }}">{{ i.user_name }}</option>
+                    {# 获取用户ID#}
+                    {% endfor %}
+                    </select></li>
+
+                <li><input type="datetime-local"></li>
+                    {# 入住时间#}
+                <li><input type="text"></li>
+                    {# 房屋面积#}
+                <li><select name="room_sort" id="">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                </select>
+                </li>
+                <li><select name="room_type" id="">
+                    <option value="住宅">住宅</option>
+                    <option value="商业">商业</option>
+                    </select>
+                </li>
+                <li><select name="room_property" id="">
+                    <option value="集体">集体</option>
+                    <option value="国有">国有</option>
+                    </select>
+                </li>
+                <li><button>提交</button></li>
+            </ul>
+        </form>
+    </div>
+{% endblock %}
+</div>
+</body>
+</html>

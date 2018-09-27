@@ -1,0 +1,27 @@
+{% extends "psearch.html" %}
+{% block css1 %}
+    #table{
+        width: 1200px;
+        margin: 50px auto;
+    }
+    .delete{
+        border: 1px solid red;
+        background-color: red;
+        color: white;
+        width: 130px;
+        height: 50px;
+        font-weight: bold;
+    }
+{% endblock %}
+
+{% block css2 %}
+width: 130px;
+{% endblock %}
+
+{% block td1 %}
+<td>操作</td>
+{% endblock %}
+
+{% block td2 %}
+    <td><button name="delete" class="delete" >删除</button></td>
+{% endblock %}
